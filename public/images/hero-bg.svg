@@ -1,0 +1,36 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1920" height="1080" fill="url(#gradient0)"/>
+  <defs>
+    <linearGradient id="gradient0" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f1f5f9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:0.8" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background elements -->
+  <rect x="0" y="0" width="1920" height="1080" fill="#f8fafc"/>
+  
+  <!-- Fashion elements -->
+  <circle cx="1600" cy="200" r="80" fill="url(#gradient1)" opacity="0.6"/>
+  <circle cx="300" cy="400" r="60" fill="url(#gradient1)" opacity="0.5"/>
+  <circle cx="320" cy="800" r="40" fill="#e2e8f0" opacity="0.3"/>
+  
+  <!-- Abstract shapes -->
+  <rect x="100" y="100" width="300" height="200" rx="20" fill="url(#gradient0)" opacity="0.1" transform="rotate(-5 250 200)"/>
+  <rect x="1400" y="600" width="200" height="150" rx="15" fill="#fbbf24" opacity="0.2" transform="rotate(3 1500 675)"/>
+  
+  <!-- Text overlay area -->
+  <rect x="480" y="380" width="960" height="320" rx="10" fill="#ffffff" opacity="0.9"/>
+  
+  <!-- Simple geometric patterns -->
+  <path d="M0 0 L480 0 L480 1080" stroke="#e5e7eb" stroke-width="1" opacity="0.3"/>
+  <path d="M1440 0 L1440 1080" stroke="#e5e7eb" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="240" cy="540" r="3" fill="#6366f1"/>
+  <circle cx="1680" cy="540" r="3" fill="#6366f1"/>
+</svg>

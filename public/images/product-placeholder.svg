@@ -1,0 +1,26 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#f3f4f6"/>
+  
+  <!-- Product placeholder -->
+  <rect x="50" y="50" width="300" height="300" rx="15" fill="#ffffff" stroke="#e5e7eb" stroke-width="2"/>
+  
+  <!-- Simple t-shirt outline -->
+  <path d="M150 120 L250 120 L250 220 L150 220 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+  <circle cx="175" cy="95" r="5" fill="#94a3b8"/>
+  
+  <!-- Price tag -->
+  <circle cx="320" cy="80" r="25" fill="#f59e0b"/>
+  <text x="320" y="88" text-anchor="middle" fill="white" fontSize="20" fontWeight="bold">$</text>
+  
+  <!-- Brand text -->
+  <text x="200" y="260" text-anchor="middle" fill="#6b7280" fontSize="14">BRAND</text>
+  
+  <!-- Rating stars -->
+  <g transform="translate(100, 280)">
+    <rect x="0" y="0" width="20" height="4" rx="2" fill="#fbbf24"/>
+    <rect x="25" y="0" width="20" height="4" rx="2" fill="#fbbf24"/>
+    <rect x="50" y="0" width="20" height="4" rx="2" fill="#fbbf24"/>
+    <rect x="75" y="0" width="20" height="4" rx="2" fill="#fbbf24"/>
+    <rect x="100" y="0" width="20" height="4" rx="2" fill="#d1d5db"/>
+  </g>
+</svg>
