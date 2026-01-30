@@ -19,7 +19,7 @@ import ReviewManagement from "@/components/merchant/ReviewManagement";
 import OrderManagement from "@/components/merchant/OrderManagement";
 import DashboardOverview from "@/components/merchant/DashboardOverview";
 import ProductManagement from "@/components/merchant/ProductManagement";
-import InventoryManagement from "@/components/merchant/InventoryManagement";
+import SimpleInventoryManagement from "@/components/merchant/SimpleInventoryManagement";
 import CouponManagement from "@/components/merchant/CouponManagement";
 
 export default function MerchantDashboard() {
@@ -107,7 +107,7 @@ export default function MerchantDashboard() {
         </TabsContent>
 
         <TabsContent value="inventory">
-          <InventoryManagement />
+          <SimpleInventoryManagement />
         </TabsContent>
 
         <TabsContent value="orders">

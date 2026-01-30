@@ -12,6 +12,7 @@ import ReviewList from "@/components/reviews/ReviewList";
 import { supabase } from "@/integrations/supabase/client";
 import { i18nService, type ProductTranslation } from "@/services/i18n/I18nService";
 import { skuService } from "@/services/inventory/SKUService";
+import { sizeGuideService, type SizeGuide } from "@/services/product/SizeGuideService";
 import type { SKU } from "@/types/inventory";
 
 export default function ProductDetail() {
@@ -32,11 +33,13 @@ export default function ProductDetail() {
   const [translationLoading, setTranslationLoading] = useState(true);
   const [skus, setSkus] = useState<SKU[]>([]);
   const [selectedSku, setSelectedSku] = useState<SKU | null>(null);
+  const [sizeGuide, setSizeGuide] = useState<SizeGuide | null>(null);
 
   useEffect(() => {
     if (id) {
       loadProduct();
       loadSkus();
+      loadSizeGuide();
     }
   }, [id]);
 
@@ -87,6 +90,12 @@ export default function ProductDetail() {
     setSkus(skuList);
   };
 
+  const loadSizeGuide = async () => {
+    if (!id) return;
+    const guide = await sizeGuideService.getProductSizeGuide(id);
+    setSizeGuide(guide);
+  };
+
   const fetchReviewStats = async () => {
     if (!product) return;
     
@@ -129,8 +138,6 @@ export default function ProductDetail() {
   const discount = product.originalPrice
     ? Math.round(((product.originalPrice - displayPrice) / product.originalPrice) * 100)
     : 0;
-
-  const currentSizeGuide = null;
 
   const skuColors = Array.from(
     new Set(
@@ -323,13 +330,15 @@ export default function ProductDetail() {
                 <p className="font-medium">
                   尺码: <span className="text-muted-foreground font-normal">{selectedSize || "请选择"}</span>
                 </p>
-                <button
-                  onClick={() => setShowSizeGuide(!showSizeGuide)}
-                  className="text-sm text-accent hover:underline flex items-center gap-1"
-                >
-                  尺码指南
-                  <ChevronDown className={`h-4 w-4 transition-transform ${showSizeGuide ? "rotate-180" : ""}`} />
-                </button>
+                {(sizeGuide || availableSizes.length > 0) && (
+                  <button
+                    onClick={() => setShowSizeGuide(!showSizeGuide)}
+                    className="text-sm text-accent hover:underline flex items-center gap-1"
+                  >
+                    尺码指南
+                    <ChevronDown className={`h-4 w-4 transition-transform ${showSizeGuide ? "rotate-180" : ""}`} />
+                  </button>
+                )}
               </div>
               <div className="flex flex-wrap gap-2">
                 {availableSizes.map((size) => (
@@ -351,14 +360,29 @@ export default function ProductDetail() {
               </div>
 
               {/* Size Guide */}
-              {showSizeGuide && currentSizeGuide && (
+              {showSizeGuide && sizeGuide && (
                 <div className="mt-4 p-4 bg-secondary rounded-lg animate-fade-in">
-                  <h4 className="font-medium mb-3">尺码对照表</h4>
+                  <h4 className="font-medium mb-3">{sizeGuide.name}</h4>
+                  
+                  {/* Measurement Tips */}
+                  {sizeGuide.measurement_tips?.tips && (
+                    <div className="mb-4 space-y-2">
+                      <p className="text-sm font-medium text-muted-foreground">测量说明：</p>
+                      {sizeGuide.measurement_tips.tips.map((tip, index) => (
+                        <div key={index} className="text-sm">
+                          <span className="font-medium">{tip.title}：</span>
+                          <span className="text-muted-foreground">{tip.description}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  
+                  {/* Size Chart */}
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <thead>
                         <tr className="border-b border-border">
-                          {currentSizeGuide.headers.map((header) => (
+                          {sizeGuide.chart_data.headers.map((header) => (
                             <th key={header} className="py-2 px-3 text-left font-medium">
                               {header}
                             </th>
@@ -366,7 +390,7 @@ export default function ProductDetail() {
                         </tr>
                       </thead>
                       <tbody>
-                        {currentSizeGuide.rows.map((row, index) => (
+                        {sizeGuide.chart_data.rows.map((row, index) => (
                           <tr key={index} className="border-b border-border/50">
                             {row.map((cell, cellIndex) => (
                               <td key={cellIndex} className="py-2 px-3 text-muted-foreground">
@@ -377,6 +401,10 @@ export default function ProductDetail() {
                         ))}
                       </tbody>
                     </table>
+                  </div>
+                  
+                  <div className="mt-3 text-xs text-muted-foreground">
+                    <p>💡 提示：如果您的尺寸介于两个尺码之间，建议选择较大的尺码以获得更舒适的穿着体验。</p>
                   </div>
                 </div>
               )}

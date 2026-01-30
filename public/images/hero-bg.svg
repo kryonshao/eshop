@@ -1,36 +1,80 @@
 <svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1920" height="1080" fill="url(#gradient0)"/>
   <defs>
-    <linearGradient id="gradient0" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#f8fafc;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#f1f5f9;stop-opacity:1" />
+    <!-- Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fafafa;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f5f5f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e5e5e5;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.8" />
-      <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:0.8" />
+    
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:0.1" />
     </linearGradient>
+    
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.12" />
+      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:0.08" />
+    </linearGradient>
+    
+    <radialGradient id="spotGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </radialGradient>
   </defs>
   
-  <!-- Background elements -->
-  <rect x="0" y="0" width="1920" height="1080" fill="#f8fafc"/>
+  <!-- Base background -->
+  <rect width="1920" height="1080" fill="url(#bgGradient)"/>
   
-  <!-- Fashion elements -->
-  <circle cx="1600" cy="200" r="80" fill="url(#gradient1)" opacity="0.6"/>
-  <circle cx="300" cy="400" r="60" fill="url(#gradient1)" opacity="0.5"/>
-  <circle cx="320" cy="800" r="40" fill="#e2e8f0" opacity="0.3"/>
+  <!-- Large decorative circles -->
+  <circle cx="1650" cy="250" r="200" fill="url(#accentGradient)" opacity="0.6"/>
+  <circle cx="1750" cy="180" r="120" fill="url(#blueGradient)" opacity="0.5"/>
   
-  <!-- Abstract shapes -->
-  <rect x="100" y="100" width="300" height="200" rx="20" fill="url(#gradient0)" opacity="0.1" transform="rotate(-5 250 200)"/>
-  <rect x="1400" y="600" width="200" height="150" rx="15" fill="#fbbf24" opacity="0.2" transform="rotate(3 1500 675)"/>
+  <!-- Abstract fashion shapes -->
+  <ellipse cx="200" cy="300" rx="150" ry="200" fill="url(#accentGradient)" opacity="0.4" transform="rotate(-15 200 300)"/>
+  <ellipse cx="280" cy="850" rx="100" ry="140" fill="url(#blueGradient)" opacity="0.35" transform="rotate(20 280 850)"/>
   
-  <!-- Text overlay area -->
-  <rect x="480" y="380" width="960" height="320" rx="10" fill="#ffffff" opacity="0.9"/>
+  <!-- Geometric patterns -->
+  <rect x="1400" y="700" width="250" height="250" rx="125" fill="url(#accentGradient)" opacity="0.25" transform="rotate(45 1525 825)"/>
+  <rect x="100" y="100" width="180" height="180" rx="90" fill="url(#blueGradient)" opacity="0.2" transform="rotate(-30 190 190)"/>
   
-  <!-- Simple geometric patterns -->
-  <path d="M0 0 L480 0 L480 1080" stroke="#e5e7eb" stroke-width="1" opacity="0.3"/>
-  <path d="M1440 0 L1440 1080" stroke="#e5e7eb" stroke-width="1" opacity="0.3"/>
+  <!-- Subtle grid pattern -->
+  <g opacity="0.03">
+    <line x1="0" y1="270" x2="1920" y2="270" stroke="#000000" stroke-width="1"/>
+    <line x1="0" y1="540" x2="1920" y2="540" stroke="#000000" stroke-width="1"/>
+    <line x1="0" y1="810" x2="1920" y2="810" stroke="#000000" stroke-width="1"/>
+    <line x1="480" y1="0" x2="480" y2="1080" stroke="#000000" stroke-width="1"/>
+    <line x1="960" y1="0" x2="960" y2="1080" stroke="#000000" stroke-width="1"/>
+    <line x1="1440" y1="0" x2="1440" y2="1080" stroke="#000000" stroke-width="1"/>
+  </g>
   
-  <!-- Decorative elements -->
-  <circle cx="240" cy="540" r="3" fill="#6366f1"/>
-  <circle cx="1680" cy="540" r="3" fill="#6366f1"/>
+  <!-- Light spots for depth -->
+  <circle cx="960" cy="540" r="400" fill="url(#spotGradient)" opacity="0.4"/>
+  <circle cx="400" cy="200" r="250" fill="url(#spotGradient)" opacity="0.3"/>
+  
+  <!-- Small accent dots -->
+  <circle cx="1200" cy="200" r="8" fill="#f59e0b" opacity="0.6"/>
+  <circle cx="1250" cy="180" r="6" fill="#3b82f6" opacity="0.5"/>
+  <circle cx="1180" cy="230" r="5" fill="#f59e0b" opacity="0.4"/>
+  
+  <circle cx="300" cy="600" r="7" fill="#3b82f6" opacity="0.5"/>
+  <circle cx="340" cy="620" r="5" fill="#f59e0b" opacity="0.4"/>
+  
+  <!-- Flowing curves -->
+  <path d="M 0 400 Q 480 350, 960 400 T 1920 400" stroke="#f59e0b" stroke-width="2" fill="none" opacity="0.15"/>
+  <path d="M 0 650 Q 480 600, 960 650 T 1920 650" stroke="#3b82f6" stroke-width="2" fill="none" opacity="0.12"/>
+  
+  <!-- Abstract fashion elements -->
+  <g opacity="0.08">
+    <!-- Handbag outline -->
+    <path d="M 1600 400 L 1650 400 L 1680 500 L 1570 500 Z" fill="#000000"/>
+    <ellipse cx="1625" cy="390" rx="15" ry="8" fill="none" stroke="#000000" stroke-width="2"/>
+    
+    <!-- Shopping bag -->
+    <rect x="250" y="750" width="60" height="80" rx="5" fill="none" stroke="#000000" stroke-width="2"/>
+    <path d="M 265 750 Q 280 730, 295 750" fill="none" stroke="#000000" stroke-width="2"/>
+  </g>
+  
+  <!-- Overlay gradient for text area -->
+  <rect x="0" y="0" width="960" height="1080" fill="url(#spotGradient)" opacity="0.6"/>
 </svg>

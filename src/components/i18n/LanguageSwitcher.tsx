@@ -12,9 +12,8 @@ import type { Locale } from '../../i18n/config';
 const languages: Record<Locale, { name: string; nativeName: string }> = {
   'zh-CN': { name: 'Chinese', nativeName: '中文' },
   'en-US': { name: 'English', nativeName: 'English' },
-  'es-ES': { name: 'Spanish', nativeName: 'Español' },
-  'fr-FR': { name: 'French', nativeName: 'Français' },
-  'de-DE': { name: 'German', nativeName: 'Deutsch' },
+  'ja-JP': { name: 'Japanese', nativeName: '日本語' },
+  'ko-KR': { name: 'Korean', nativeName: '한국어' },
 };
 
 export function LanguageSwitcher() {

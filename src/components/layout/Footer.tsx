@@ -1,27 +1,30 @@
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Twitter, Mail } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   const footerLinks = {
     shop: [
-      { label: "全部商品", href: "/products" },
-      { label: "新品上市", href: "/new" },
-      { label: "特价优惠", href: "/sale" },
-      { label: "热销榜单", href: "/bestsellers" },
+      { label: t("nav.allProducts"), href: "/products" },
+      { label: t("nav.newArrivals"), href: "/new" },
+      { label: t("nav.sale"), href: "/sale" },
+      { label: t("nav.bestsellers"), href: "/bestsellers" },
     ],
     help: [
-      { label: "尺码指南", href: "/size-guide" },
-      { label: "配送信息", href: "/shipping" },
-      { label: "退换政策", href: "/returns" },
-      { label: "常见问题", href: "/faq" },
+      { label: t("nav.sizeGuide"), href: "/size-guide" },
+      { label: t("nav.shippingInfo"), href: "/shipping" },
+      { label: t("nav.returnPolicy"), href: "/returns" },
+      { label: t("nav.faq"), href: "/faq" },
     ],
     about: [
-      { label: "关于我们", href: "/about" },
-      { label: "联系我们", href: "/contact" },
-      { label: "隐私政策", href: "/privacy" },
-      { label: "使用条款", href: "/terms" },
+      { label: t("footer.aboutUs"), href: "/about" },
+      { label: t("footer.contactUs"), href: "/contact" },
+      { label: t("footer.privacyPolicy"), href: "/privacy" },
+      { label: t("footer.termsOfService"), href: "/terms" },
     ],
   };
 
@@ -33,11 +36,11 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link to="/" className="inline-block">
               <h2 className="font-display text-2xl font-semibold tracking-tight">
-                BLANC<span className="text-accent">.</span>
+                AltEs<span className="text-accent">.</span>
               </h2>
             </Link>
             <p className="mt-4 text-muted-foreground max-w-sm">
-              专注于高品质白牌服装，为全球消费者提供时尚、舒适、性价比高的穿着选择。
+              {t("footer.brandDescription")}
             </p>
             <div className="flex items-center space-x-4 mt-6">
               <Button variant="ghost" size="icon">
@@ -57,7 +60,7 @@ export default function Footer() {
 
           {/* Shop Links */}
           <div>
-            <h3 className="font-semibold mb-4">购物</h3>
+            <h3 className="font-semibold mb-4">{t("footer.shop")}</h3>
             <ul className="space-y-3">
               {footerLinks.shop.map((link) => (
                 <li key={link.href}>
@@ -74,7 +77,7 @@ export default function Footer() {
 
           {/* Help Links */}
           <div>
-            <h3 className="font-semibold mb-4">帮助</h3>
+            <h3 className="font-semibold mb-4">{t("footer.help")}</h3>
             <ul className="space-y-3">
               {footerLinks.help.map((link) => (
                 <li key={link.href}>
@@ -91,14 +94,14 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h3 className="font-semibold mb-4">订阅优惠</h3>
+            <h3 className="font-semibold mb-4">{t("footer.subscribeTitle")}</h3>
             <p className="text-muted-foreground text-sm mb-4">
-              订阅获取最新优惠和新品信息
+              {t("footer.subscribeDescription")}
             </p>
             <div className="flex gap-2">
               <Input
                 type="email"
-                placeholder="输入邮箱"
+                placeholder={t("footer.emailPlaceholder")}
                 className="flex-1"
               />
               <Button variant="default" size="icon">
@@ -110,10 +113,10 @@ export default function Footer() {
 
         <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2024 BLANC. 保留所有权利。
+            © 2026 AltEs. {t("footer.copyright")}
           </p>
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-            <span>支付方式：</span>
+            <span>{t("footer.paymentMethods")}</span>
             <span>Visa</span>
             <span>•</span>
             <span>Mastercard</span>

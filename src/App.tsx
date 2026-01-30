@@ -16,6 +16,10 @@ import Settings from "./pages/Settings";
 import Orders from "./pages/Orders";
 import Checkout from "./pages/Checkout";
 import MerchantDashboard from "./pages/MerchantDashboard";
+import SizeGuide from "./pages/SizeGuide";
+import Shipping from "./pages/Shipping";
+import Returns from "./pages/Returns";
+import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,6 +47,11 @@ const App = () => (
                     <Route path="/merchant" element={<MerchantDashboard />} />
                     <Route path="/new" element={<Products />} />
                     <Route path="/sale" element={<Products />} />
+                    <Route path="/bestsellers" element={<Products />} />
+                    <Route path="/size-guide" element={<SizeGuide />} />
+                    <Route path="/shipping" element={<Shipping />} />
+                    <Route path="/returns" element={<Returns />} />
+                    <Route path="/faq" element={<FAQ />} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>

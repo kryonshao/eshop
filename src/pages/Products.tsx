@@ -1,17 +1,48 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Filter, Grid, LayoutGrid } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/product/ProductCard";
 import { supabase } from "@/integrations/supabase/client";
 import type { Product } from "@/types/product";
 
 export default function Products() {
+  const { t } = useTranslation();
+  const location = useLocation();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [gridSize, setGridSize] = useState<"small" | "large">("large");
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Array<{ id: string; name: string }>>([
-    { id: "all", name: "全部" },
+    { id: "all", name: t("product.all") },
   ]);
+
+  // Determine page type based on route
+  const getPageInfo = () => {
+    if (location.pathname === "/new") {
+      return {
+        title: t("product.newArrivals"),
+        description: t("product.newArrivalsDesc"),
+      };
+    } else if (location.pathname === "/sale") {
+      return {
+        title: t("product.saleItems"),
+        description: t("product.saleItemsDesc"),
+      };
+    } else if (location.pathname === "/bestsellers") {
+      return {
+        title: t("product.bestsellers"),
+        description: t("product.bestsellersDesc"),
+      };
+    } else {
+      return {
+        title: t("product.allProducts"),
+        description: t("product.allProductsDesc"),
+      };
+    }
+  };
+
+  const pageInfo = getPageInfo();
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -23,7 +54,7 @@ export default function Products() {
 
         if (error || !data || data.length === 0) {
           setProducts([]);
-          setCategories([{ id: "all", name: "全部" }]);
+          setCategories([{ id: "all", name: t("product.all") }]);
           return;
         }
 
@@ -32,18 +63,18 @@ export default function Products() {
 
         const categorySet = new Set(list.map((p) => p.category).filter(Boolean));
         setCategories([
-          { id: "all", name: "全部" },
+          { id: "all", name: t("product.all") },
           ...Array.from(categorySet).map((category) => ({ id: category, name: category })),
         ]);
       } catch (error) {
         console.error("Error loading products:", error);
         setProducts([]);
-        setCategories([{ id: "all", name: "全部" }]);
+        setCategories([{ id: "all", name: t("product.all") }]);
       }
     };
 
     loadProducts();
-  }, []);
+  }, [t]);
 
   const filteredProducts =
     selectedCategory === "all"
@@ -55,9 +86,9 @@ export default function Products() {
       {/* Header */}
       <div className="bg-secondary py-12 md:py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="font-display text-3xl md:text-5xl font-semibold">全部商品</h1>
+          <h1 className="font-display text-3xl md:text-5xl font-semibold">{pageInfo.title}</h1>
           <p className="mt-4 text-muted-foreground max-w-md mx-auto">
-            探索我们精心设计的高品质服装系列
+            {pageInfo.description}
           </p>
         </div>
       </div>
@@ -82,7 +113,7 @@ export default function Products() {
           {/* View Options */}
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">
-              {filteredProducts.length} 件商品
+              {filteredProducts.length} {t("product.items")}
             </span>
             <div className="flex items-center gap-1">
               <Button
@@ -125,7 +156,7 @@ export default function Products() {
         {/* Empty State */}
         {filteredProducts.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-muted-foreground">暂无商品</p>
+            <p className="text-muted-foreground">{t("product.noProducts")}</p>
           </div>
         )}
       </div>

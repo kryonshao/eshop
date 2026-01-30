@@ -2,45 +2,52 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 
-type AppRole = "admin" | "merchant" | "user";
+type UserRole = "admin" | "merchant" | "customer";
 
 export function useUserRole() {
   const { user } = useAuth();
-  const [roles, setRoles] = useState<AppRole[]>([]);
+  const [userRole, setUserRole] = useState<UserRole | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (user) {
-      fetchRoles();
+      fetchRole();
     } else {
-      setRoles([]);
+      setUserRole(null);
       setLoading(false);
     }
   }, [user]);
 
-  const fetchRoles = async () => {
+  const fetchRole = async () => {
     if (!user) return;
 
     try {
       const { data, error } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", user.id);
+        .from("profiles")
+        .select("user_role")
+        .eq("id", user.id)
+        .single();
 
       if (error) throw error;
 
-      setRoles((data || []).map((r) => r.role as AppRole));
+      setUserRole((data?.user_role as UserRole) || "customer");
     } catch (error) {
-      console.error("Error fetching roles:", error);
-      setRoles([]);
+      console.error("Error fetching user role:", error);
+      setUserRole("customer");
     } finally {
       setLoading(false);
     }
   };
 
-  const hasRole = (role: AppRole) => roles.includes(role);
-  const isAdmin = hasRole("admin");
-  const isMerchant = hasRole("merchant") || isAdmin;
+  const isAdmin = userRole === "admin";
+  const isMerchant = userRole === "merchant" || isAdmin;
+  const isCustomer = userRole === "customer";
 
-  return { roles, loading, hasRole, isAdmin, isMerchant };
+  return { 
+    userRole, 
+    loading, 
+    isAdmin, 
+    isMerchant,
+    isCustomer
+  };
 }

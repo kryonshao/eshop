@@ -3,11 +3,10 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import translationEn from './locales/en-US.json';
 import translationZh from './locales/zh-CN.json';
-import translationEs from './locales/es-ES.json';
-import translationFr from './locales/fr-FR.json';
-import translationDe from './locales/de-DE.json';
+import translationJa from './locales/ja-JP.json';
+import translationKo from './locales/ko-KR.json';
 
-export type Locale = 'en-US' | 'zh-CN' | 'es-ES' | 'fr-FR' | 'de-DE';
+export type Locale = 'en-US' | 'zh-CN' | 'ja-JP' | 'ko-KR';
 
 const resources = {
   'en-US': {
@@ -16,14 +15,11 @@ const resources = {
   'zh-CN': {
     translation: translationZh,
   },
-  'es-ES': {
-    translation: translationEs,
+  'ja-JP': {
+    translation: translationJa,
   },
-  'fr-FR': {
-    translation: translationFr,
-  },
-  'de-DE': {
-    translation: translationDe,
+  'ko-KR': {
+    translation: translationKo,
   },
 };
 

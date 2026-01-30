@@ -1,29 +1,32 @@
 import { Truck, Shield, RefreshCw, Headphones } from "lucide-react";
-
-const features = [
-  {
-    icon: Truck,
-    title: "全球配送",
-    description: "覆盖50+国家，快速安全送达",
-  },
-  {
-    icon: Shield,
-    title: "品质保证",
-    description: "精选面料，严格质检",
-  },
-  {
-    icon: RefreshCw,
-    title: "无忧退换",
-    description: "30天内免费退换货",
-  },
-  {
-    icon: Headphones,
-    title: "专属客服",
-    description: "7x24小时在线服务",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export default function Features() {
+  const { t } = useTranslation();
+
+  const features = [
+    {
+      icon: Truck,
+      title: t("home.globalShipping"),
+      description: t("home.globalShippingDesc"),
+    },
+    {
+      icon: Shield,
+      title: t("home.qualityAssurance"),
+      description: t("home.qualityAssuranceDesc"),
+    },
+    {
+      icon: RefreshCw,
+      title: t("home.easyReturns"),
+      description: t("home.easyReturnsDesc"),
+    },
+    {
+      icon: Headphones,
+      title: t("home.customerSupport"),
+      description: t("home.customerSupportDesc"),
+    },
+  ];
+
   return (
     <section className="py-16 bg-background border-y border-border">
       <div className="container mx-auto px-4">

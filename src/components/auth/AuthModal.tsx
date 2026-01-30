@@ -44,7 +44,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         if (error) {
           toast.error(error.message || "注册失败，请重试");
         } else {
-          toast.success("注册成功！欢迎加入 BLANC");
+          toast.success("注册成功！欢迎加入 AltEs");
           onClose();
           resetForm();
         }

@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingBag, Menu, X, Search, Heart } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import { useWishlist } from "@/contexts/WishlistContext";
 import { useAuth } from "@/contexts/AuthContext";
 import Cart from "@/components/cart/Cart";
 import UserMenu from "@/components/auth/UserMenu";
+import { LanguageSwitcher } from "@/components/i18n/LanguageSwitcher";
 
 export default function Header() {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { totalItems } = useCart();
@@ -16,10 +19,10 @@ export default function Header() {
   const { user } = useAuth();
 
   const navLinks = [
-    { href: "/", label: "首页", labelEn: "Home" },
-    { href: "/products", label: "全部商品", labelEn: "Shop" },
-    { href: "/new", label: "新品上市", labelEn: "New" },
-    { href: "/sale", label: "特价优惠", labelEn: "Sale" },
+    { href: "/", label: t("nav.home") },
+    { href: "/products", label: t("nav.allProducts") },
+    { href: "/new", label: t("nav.newArrivals") },
+    { href: "/sale", label: t("nav.sale") },
   ];
 
   return (
@@ -40,7 +43,7 @@ export default function Header() {
             {/* Logo */}
             <Link to="/" className="flex items-center">
               <h1 className="font-display text-xl md:text-2xl font-semibold tracking-tight">
-                BLANC<span className="text-accent">.</span>
+                AltEs<span className="text-accent">.</span>
               </h1>
             </Link>
 
@@ -63,6 +66,8 @@ export default function Header() {
               <Button variant="ghost" size="icon" className="hidden md:flex">
                 <Search className="h-5 w-5" />
               </Button>
+
+              <LanguageSwitcher />
 
               {user && (
                 <Button variant="ghost" size="icon" className="hidden md:flex relative" asChild>
@@ -116,7 +121,7 @@ export default function Header() {
                   className="block text-lg font-medium text-foreground hover:text-accent transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  我的收藏
+                  {t("nav.myWishlist")}
                 </Link>
               )}
             </nav>

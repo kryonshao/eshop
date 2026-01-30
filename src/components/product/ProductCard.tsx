@@ -97,35 +97,37 @@ export default function ProductCard({ product }: ProductCardProps) {
             />
           </Button>
 
-          {/* Quick Actions */}
-          <div
-            className={`absolute inset-x-3 bottom-3 flex gap-2 transition-all duration-300 ${
-              isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
-            <Button
-              variant="default"
-              className="flex-1 glass"
-              onClick={(e) => {
-                e.preventDefault();
-                setShowQuickView(true);
-              }}
-            >
-              <ShoppingBag className="h-4 w-4 mr-2" />
-              快速购买
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="bg-background/80 backdrop-blur-sm shrink-0"
-              asChild
-            >
-              <Link to={`/product/${product.id}`} onClick={(e) => e.stopPropagation()}>
-                <Eye className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
         </Link>
+
+        {/* Quick Actions - Outside of Link to avoid nesting */}
+        <div
+          className={`absolute inset-x-3 bottom-3 flex gap-2 transition-all duration-300 ${
+            isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
+          <Button
+            variant="default"
+            className="flex-1 glass"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setShowQuickView(true);
+            }}
+          >
+            <ShoppingBag className="h-4 w-4 mr-2" />
+            快速购买
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            className="bg-background/80 backdrop-blur-sm shrink-0"
+            asChild
+          >
+            <Link to={`/product/${product.id}`} onClick={(e) => e.stopPropagation()}>
+              <Eye className="h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
 
         {/* Product Info */}
         <Link to={`/product/${product.id}`} className="block mt-4 space-y-1">
